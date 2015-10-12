@@ -1,0 +1,51 @@
+.new_form input[type="file"]{
+  display: inline-block;
+}
+
+.new_form div{
+  padding: 5px
+}
+
+.new_form{
+  text-align: left;
+  padding-left: 400px 
+}
+
+.chosen-item-callout {
+  text-align: center;
+}
+
+.chosen-item-callout__heading {
+  margin-bottom: 45px;
+  font-size: 60px;
+  margin-top: 45px;
+  color: #25b1e2;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.chosen-item-callout__done__link {
+  @extend .btn;
+  @extend .btn-default;
+  @extend .btn-lg;
+}
+
+.chosen-item-callout__image {
+  width: 35%;
+}
+
+.choice_done{
+  color: green;
+  font-size: 40px
+}
+
+.choice_cancelled{
+  color: red;
+  font-size: 40px
+}
+
+#delete_step2 {
+  display: none;
+  position: absolute;
+  //bottom: -130px;
+  right: 130px;
+}

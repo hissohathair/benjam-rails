@@ -1,19 +1,85 @@
-.group-card {
-  border: 1px solid #333;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 5px;
-  width: 200px;
-  height: 200px;
-  float: left;
+section.group-cards{
+  color: #25b1e2;
+  font-family: 'Open Sans', sans-serif;
+  float: right;
+  width: 90%;
+  //display: inline-block;
 }
 
-.edit {
-  position: fixed;
-  bottom: 5px;
-  right: 15px;
-  background-image: image-url('i_add.png');
-  height: 85px;
-  width: 84px;
-  text-indent: -9999px;
+#all_cards {
+  margin-left: 40px
+}
+
+#item-heading{
+  //color: #25b1e2;
+  font-size: 60px;
+  font-weight: 600;
+  text-align: center;
+  margin: 45px 0 45px 0;
+}
+.group-card {
+ 
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
+  
+  background-color: white;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.group-card__image {
+  width: 100%;
+}
+
+.group-card__header {
+  margin-top: 10px;
+}
+
+
+
+@media (min-width: $screen-sm-min) {
+  .group-cards {
+    @include clearfix;
+  }
+
+  .group-card {
+    width: 25%;
+    float: left;
+    margin: 10px;
+  }
+}
+
+@media (min-width: $screen-md-min) {
+
+
+@media (min-width: $screen-lg-min) {
+
+}}
+
+
+#carousel_list { 
+	width:1000px;
+	overflow:hidden; 
+}
+
+ul { 
+	list-style-type:none;
+	width:10000px;
+	margin:20px;
+	padding:20px; 
+}
+
+li { 
+	float:left;
+	text-align:center;
+	margin:20px;
+	padding:0; 
+}
+
+#scroll-mode{
+width:200px;
 }

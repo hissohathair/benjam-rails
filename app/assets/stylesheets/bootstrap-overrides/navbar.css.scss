@@ -1,0 +1,46 @@
+.navbar {
+  border: none;
+  float: left;
+  width: 10%
+}
+
+.navbar-default .navbar-brand {
+  background-color: black;
+  border-radius: 110px;
+  height: 70px;
+  width: 70px;
+  line-height: 70px;
+  margin: 10px;
+  color: #fff;
+  font-size: 16px;
+  padding: 0 0 0 4px;
+}
+
+.user {
+  height: 130px;
+  width: 130px;
+  line-height: 130px;
+  margin: 40px 0 0 17px;
+}
+
+.home {
+  height: 55px;
+  width: 55px;
+  line-height: 55px;
+  margin: 20px 0 0 50px;
+}
+
+
+.edit {
+  height: 55px;
+  width: 55px;
+  line-height: 55px;
+  margin: 300px 0 0 50px;
+}
+
+.delete {
+    height: 55px;
+  width: 55px;
+  line-height: 55px;
+  margin: 0 0 0 50px;
+}

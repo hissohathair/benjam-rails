@@ -20,3 +20,90 @@
 //   itemSelector: '.group-card'
 // });
 // })
+
+
+
+$(function() {
+  var appCache = window.applicationCache;
+  appCache.addEventListener('progress', function(e){
+    var progress = parseInt(e.loaded/e.total * 100);
+    $('.cache-progress-bar').show();
+    $('.cache-progress-bar__progress').width(progress + '%');
+    $('.cache-progress-bar__text').text(progress + '%');
+
+    if(progress === 100) {
+      $('.cache-progress-bar').remove();
+    }
+  }, false);
+  appCache.addEventListener('error', function(e){
+    $('.cache-progress-bar__text').text('ERROR ' + ' ' + e.loaded + '/' + e.total);
+  	console.log(e);
+  }, false);
+  appCache.addEventListener('updateready', function(e){
+	
+		if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+		  // Browser downloaded a new app cache.
+		    window.location.reload();
+		} else {
+		  // Manifest didn't changed. Nothing new to server.
+		}
+  }, false);
+
+  $('.group-card').each(function(){
+    var path = $(this).attr('href');
+    $(this).on('click', function(e){
+      var audio = $('audio', this);
+      if(audio[0]){
+        e.preventDefault()
+        audio[0].play();
+        audio.on('ended', function(){
+          window.location = path;
+        });
+      }
+    });
+  })
+
+  // Only executes item is pressed down for more than msToWaitFor miliseconds
+  delayAction = function(item, action){
+    var msToWaitFor = 2000; // how many miliseconds to wait
+    var downTimer;
+    var allowClick = false;
+    item.on({
+      mousedown: function(e) {
+        e.preventDefault();
+        clearTimeout(downTimer);
+        downTimer = setTimeout(function() {
+          allowClick = true;
+          console.log('ready for action');
+        }, msToWaitFor); 
+      },
+      mouseup: function(e) {
+        if(allowClick){
+          action(item, e);
+          allowClick = false;
+        }
+        clearTimeout(downTimer); 
+      },
+      click: function(e) {
+        e.preventDefault();
+        return false;
+      }
+    });
+  }
+
+  ahrefAction = function(item, e){
+    window.location = item.attr('href');
+  }
+
+  deleteAction = function(item, e){
+    $("#delete_step2").show();
+    setTimeout(function(){$("#delete_step2").hide()}, 3000 );
+  }
+
+  // On pressing any a link with a delayed-action class, go to its href attribute
+  delayAction($("a.delayed-action"), ahrefAction)
+
+  // On pressing delete_step1 show delete_step2 for a few seconds
+  delayAction($("#delete_step1"), deleteAction)
+
+});

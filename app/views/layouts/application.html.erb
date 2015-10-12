@@ -1,33 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html manifest="/cache.manifest">
 <head>
   <title>BenjamRails</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+  <%= render 'layouts/mixpanel' %>
 </head>
 <body>
-
-
-
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Benjams</a>
-      </div>
-    </nav>
-
     <div>
+      <nav class="navbar navbar-default" role="navigation">
+        <div>
+          <%= image_tag "user_ben.png",class: 'user' %>
+        </div>
+        <div class="navbar-header">
+          <a href="<%=client_path(@client.name)%>">
+            <%= image_tag "i_home.png",class: 'home' %>
+          </a>
+        </div>
 
-      <%= yield %>
+        <%unless @item && @item.id%>
+          <div>
+            <a class="delayed-action" href="<%=new_client_item_path(@client.name)%>">
+              <%= image_tag "i_add_grey.png",class: 'edit' %>
+            </a>
+          </div>
+        <%end%>  
+
+        <%if @item && @item.id%>
+          <div>
+            <a class="delayed-action" href="<%=client_item_nested_path(@client.name, @item)%>">
+              <%= image_tag "i_add_grey.png",class: 'edit' %>
+            </a>
+          </div>
+
+          <%if @item.children.none?%>
+
+              <%= image_tag "i_minus_grey.png",class: 'delete',id: "delete_step1" %>         
+             <div id="delete_step1">
+            </div>
+			
+          <%end%>         
+
+        <%end%>
+
+        <div id="scroll-mode" style="margin: 10px;">
+          <a href="<%=client_chooser_path(@client.name) %>">
+            <span style="color:grey"> Choose<br/>scrolling<br/>mode </span>
+          </a>
+        </div>
+
+      </nav>
+
+      <div>
+
+        <%= yield %>
+
+      </div>
+
+      <div class="cache-progress-bar">
+        <p>Cache load progress</p>
+        <div class="cache-progress-bar__container">
+          <div class="cache-progress-bar__progress"></div>
+        </div>
+        <div class="cache-progress-bar__text"></div>
+      </div>
 
     </div> <!-- /container -->
+	
+
+    <script type="text/javascript">
+
+    </script>
 
 </body>
 </html>

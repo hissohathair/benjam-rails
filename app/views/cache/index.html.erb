@@ -1,0 +1,21 @@
+CACHE MANIFEST
+
+# <%= @mode %>
+/jquery.flexslider.js
+/arrows.png
+
+<% unless Rails.env.production? %>
+<% paths_for_manifests(%w(application.js)).each do |manifest_path| %>
+<%= build_digested_asset_path manifest_path, true %>
+<% end %>
+<% end %>
+
+<% @asset_list.each do |asset| %>
+<%= build_digested_asset_path asset %>
+<% end %>
+
+<% @items.each do |item| %>
+<%= client_item_path item.client.name, item %>
+<%= image_item_path(item, format: :jpg) %>
+<%= audio_item_path(item, format: :wav) %>
+<% end %>
